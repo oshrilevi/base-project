@@ -1,64 +1,58 @@
 module.exports = function(grunt) {
-    var settings = grunt.file.readJSON('grunt-settings.json');
-    var tools = require('./grunt-functions');
-
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
             json: {
-                files: settings.json_files,
+                files: ['assets/inputs/*.json'],
                 tasks: ['copy:json', 'json-minify']
             },
             css: {
-                files: settings.css_files,
-                tasks: ['csslint', 'newer:cssmin', 'copy:css', 'clean:css']
+                files: ['assets/css/*.css'],
+                tasks: ['csslint', 'newer:cssmin']
             },
             js: {
-                files: settings.js_files,
-                tasks: ['jshint', 'newer:uglify', 'copy:js', 'clean:js']
+                files: ['assets/js/*.js'],
+                tasks: ['jshint', 'newer:uglify:js']
             }
         },
         copy: {
             json: {
                 files: [
-                  {expand: true, src: ['assets/data/**'], dest: 'build'}
-                ]
-            },
-            css: {
-                files: [
-                  {expand: true, src: ['assets/css/*min.css'], dest: 'build'}
-                ]
-            },
-            js: {
-                files: [
-                  {expand: true, src: ['assets/js/*min.js'], dest: 'build'}
+                  {expand: true, src: ['assets/inputs/**'], dest: 'build'}
                 ]
             }
         },
         'json-minify': {
             build: {
-                files: 'build/assets/data/*.json'
+                files: 'build/assets/inputs/*.json'
             }
         },
         uglify: {
-            uglify_files: {
-                files: tools.generateMinFilesObj(settings.js_files, 'js')
+            js: {
+                files: [{
+                    expand: true,
+                    cwd: 'assets/js',
+                    src: '**/*.js',
+                    dest: 'build/assets/js'
+                }]
             }
         },
         cssmin: {
             minify_files: {
-                files: tools.generateMinFilesObj(settings.css_files, 'css')
+                files: [{
+                    expand: true,
+                    cwd: 'assets/css',
+                    src: ['*.css'],
+                    dest: 'build/assets/css',
+                    ext: '.css'
+                }]
             }
         },
         csslint: {
-            src: settings.css_files
+            src: ['assets/css/*.css']
         },
         jshint: {
-            all: ['Gruntfile.js'].concat(settings.js_files)
-        },
-        clean: {
-            js: ["assets/js/*.min.js"],
-            css: ["assets/css/*.min.css"]
+            all: ['Gruntfile.js'].concat(['assets/js/*.js'])
         }
     });
 
@@ -71,7 +65,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-newer');
-    grunt.loadNpmTasks('grunt-contrib-clean');
 
     // Register the default tasks.
     grunt.registerTask('default', ['watch']);
