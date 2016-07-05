@@ -1,57 +1,30 @@
-define(function() {
-    var app = function(){
-        var THIS = this;
-        
-        this.init = function(params){
-            $.extend(true, app, core, options);
-        };
+define(['jquery', 'core', 'options'], function($, core, options) {
+    var app = {
 
         // PRIVATE MEMBERS. OPTIONS FUNCTIONALITY DERIVED FROM CORE.
-        this.options = {
+        options : {
             
-        };
+        },
 
-        this.callbacks = {
+        callbacks : {
 
-        };
+        },
 
-        this.toggle = {
+        toggle : {
 
-        };
+        },
 
-        this.services = {
+        services : {
             test: function(){
                 return 'test';
             }
-        };
+        }
     };
+
+    var init = function(){
+        $.extend(true, app.options, options);
+        $.extend(true, app, core);
+    }();
+    
     return app;
 });
-
-/*function app(){}
-(function(){
-    var THIS = this;
-    
-    this.init = function(params){
-        $.extend(true, app, core, options);
-    };
-
-    // PRIVATE MEMBERS. OPTIONS FUNCTIONALITY DERIVED FROM CORE.
-    this.options = {
-        
-    };
-
-    this.callbacks = {
-
-    };
-
-    this.toggle = {
-
-    };
-
-    this.services = {
-
-    };
-}).apply(app);
-
-app.init();*/
