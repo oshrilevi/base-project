@@ -3,12 +3,13 @@ function app(){}
     var THIS = this;
     
     this.init = function(params){
+        $.extend(true, app, core);
         console.log('App init');
     };
 
-    // PRIVATE MEMBERS. GETTER AND SETTER ARE DERIVED FROM THE CORE.
+    // PRIVATE MEMBERS. OPTIONS FUNCTIONALITY DERIVED FROM CORE.
     this.options = {
-        test: 'test'
+        
     };
 
     this.callbacks = {
@@ -22,4 +23,10 @@ function app(){}
     this.services = {
 
     };
+
+    this.test = function(val){
+        return(val);
+    };
 }).apply(app);
+
+app.init();
