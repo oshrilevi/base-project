@@ -22,7 +22,7 @@ function core(){}
         set: function(key, value){
             var tmpObj = {};
             if(Object.prototype.toString.call(key)=='[object Object]'){
-                // OBJECT 
+                // OBJECT
                 tmpObj = key;
             }else{
                 // KEY AND VALUE

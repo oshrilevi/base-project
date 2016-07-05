@@ -4,7 +4,6 @@ function app(){}
     
     this.init = function(params){
         $.extend(true, app, core);
-        console.log('App init');
     };
 
     // PRIVATE MEMBERS. OPTIONS FUNCTIONALITY DERIVED FROM CORE.
@@ -22,10 +21,6 @@ function app(){}
 
     this.services = {
 
-    };
-
-    this.test = function(val){
-        return(val);
     };
 }).apply(app);
 

@@ -9,6 +9,10 @@ module.exports = function(grunt) {
             js: {
                 files: ['assets/js/*.js'],
                 tasks: ['jshint', 'qunit', 'newer:uglify:js']
+            },
+            tests_js: {
+                files: ['tests/*.js'],
+                tasks: ['qunit']
             }
         },
         uglify: {
