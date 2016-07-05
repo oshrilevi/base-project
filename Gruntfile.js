@@ -8,7 +8,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: ['assets/js/*.js'],
-                tasks: ['jshint', 'newer:uglify:js']
+                tasks: ['jshint', 'qunit', 'newer:uglify:js']
             }
         },
         uglify: {
@@ -41,6 +41,9 @@ module.exports = function(grunt) {
         },
         jshint: {
             all: ['Gruntfile.js'].concat(['assets/js/*.js'])
+        },
+        qunit: {
+            js: ['tests/*.html']
         }
     });
 
@@ -52,6 +55,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
 
     // Register the default tasks.
     grunt.registerTask('default', ['watch']);
