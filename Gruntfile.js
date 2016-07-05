@@ -11,7 +11,7 @@ module.exports = function(grunt) {
                 tasks: ['jshint', 'qunit', 'newer:uglify:js']
             },
             tests_js: {
-                files: ['tests/*.js'],
+                files: ['assets/js/tests/*.js'],
                 tasks: ['qunit']
             }
         },
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
             all: ['Gruntfile.js'].concat(['assets/js/*.js'])
         },
         qunit: {
-            js: ['tests/*.html']
+            js: ['tests/index.html']
         }
     });
 
